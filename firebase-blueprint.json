@@ -1,0 +1,103 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User profile and onboarding information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "address": { "type": "string" },
+        "contactno": { "type": "string" },
+        "onboarding": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "onboarding", "createdAt"]
+    },
+    "Booking": {
+      "title": "Service Booking",
+      "description": "A request for a cleaning service",
+      "type": "object",
+      "properties": {
+        "date": { "type": "string", "format": "date" },
+        "time": { "type": "string" },
+        "notes": { "type": "string" },
+        "status": { "type": "string", "enum": ["request", "confirmed", "completed", "cancelled"] },
+        "cleanerId": { "type": "string", "description": "UID of the cleaner who accepted the job" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["date", "time", "status", "createdAt"]
+    },
+    "Cleaner": {
+      "title": "Cleaner Profile",
+      "description": "Profile of a cleaner applying to join the crew",
+      "type": "object",
+      "properties": {
+        "firstname": { "type": "string" },
+        "lastname": { "type": "string" },
+        "address": { "type": "string" },
+        "contactno": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "verified": { "type": "boolean" },
+        "status": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["firstname", "lastname", "address", "contactno", "email", "gender", "verified", "status", "createdAt"]
+    },
+    "Admin": {
+      "title": "Admin Profile",
+      "description": "Administrator account for managing the platform",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "contactno": { "type": "string" },
+        "status": { "type": "boolean" },
+        "type": { "type": "string", "enum": ["admin", "superadmin"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "status", "type", "createdAt"]
+    },
+    "Service": {
+      "title": "Cleaning Service Package",
+      "description": "A service package available for booking",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string" },
+        "duration": { "type": "string" },
+        "rate": { "type": "number" },
+        "description": { "type": "string" },
+        "inclusion": { 
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["type", "duration", "rate", "description", "inclusion"]
+    }
+  },
+  "firestore": {
+    "/admin/{adminId}": {
+      "schema": "Admin",
+      "description": "Collection of admin profiles indexed by their Firebase Auth UID."
+    },
+    "/customers/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profile documents indexed by their Firebase Auth UID."
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Collection of bookings created by the user."
+    },
+    "/cleaners/{uid}": {
+      "schema": "Cleaner",
+      "description": "Collection of cleaner application documents indexed by their Firebase Auth UID."
+    },
+    "/services/{serviceId}": {
+      "schema": "Service",
+      "description": "Collection of available service packages."
+    }
+  }
+}

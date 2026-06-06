@@ -1,0 +1,6 @@
+{
+  "name": "Home Cleaning",
+  "description": "The easiest way for landlords and tenants to book professional home cleaning services. Quick, reliable, and thorough.",
+  "requestFramePermissions": ["notifications", "camera"],
+  "majorCapabilities": []
+}

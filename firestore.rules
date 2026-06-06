@@ -1,0 +1,167 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'jfresnidojr@gmail.com' ||
+        (
+          exists(/databases/$(database)/documents/admin/$(request.auth.uid)) &&
+          get(/databases/$(database)/documents/admin/$(request.auth.uid)).data.status == true &&
+          get(/databases/$(database)/documents/admin/$(request.auth.uid)).data.type == 'superadmin'
+        )
+      );
+    }
+
+    function isAdmin() {
+      return isSuperAdmin() || (
+        isSignedIn() &&
+        exists(/databases/$(database)/documents/admin/$(request.auth.uid)) &&
+        get(/databases/$(database)/documents/admin/$(request.auth.uid)).data.status == true
+      );
+    }
+
+    function isActiveCleaner() {
+      return isSignedIn() && 
+             get(/databases/$(database)/documents/cleaners/$(request.auth.uid)).data.status == true;
+    }
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['name', 'email', 'onboarding', 'createdAt']) &&
+             data.name is string &&
+             data.email is string &&
+             data.onboarding is bool &&
+             data.createdAt is timestamp &&
+             (data.onboarding == false || (
+               data.keys().hasAll(['address', 'contactno', 'identification']) &&
+               data.address is string &&
+               data.contactno is string &&
+               data.identification is string
+             ));
+    }
+
+    function isValidBooking(data) {
+      return data.keys().hasAll(['date', 'time', 'status', 'customerId', 'customerAddress', 'customerName', 'createdAt']) &&
+             data.date is string &&
+             data.time is string &&
+             data.status == "request" &&
+             data.customerId is string && data.customerId.size() > 0 &&
+             data.customerAddress is string &&
+             data.customerName is string &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidCleaner(data) {
+      return data.keys().hasAll(['firstname', 'lastname', 'address', 'contactno', 'email', 'gender', 'verified', 'status', 'createdAt', 'identification']) &&
+             data.firstname is string && data.firstname.size() > 0 &&
+             data.lastname is string && data.lastname.size() > 0 &&
+             data.address is string &&
+             data.contactno is string &&
+             data.email is string &&
+             data.gender in ['male', 'female', 'other'] &&
+             data.verified is bool &&
+             data.status is bool &&
+             data.identification is string &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidAdmin(data) {
+      return data.keys().hasAll(['name', 'email', 'status', 'type', 'createdAt']) &&
+             data.name is string && data.name.size() > 0 &&
+             data.email is string &&
+             data.status is bool &&
+             data.type in ['admin', 'superadmin'] &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidService(data) {
+      return data.keys().hasAll(['type', 'duration', 'rate', 'description', 'inclusion', 'updatedAt']) &&
+             data.type is string && data.type.size() > 0 &&
+             data.duration is string &&
+             data.rate is number &&
+             data.description is string &&
+             data.inclusion is list &&
+             data.updatedAt is timestamp &&
+             (data.keys().hasOnly(['type', 'duration', 'rate', 'description', 'inclusion', 'updatedAt']) ||
+              (data.keys().hasAll(['createdAt']) && data.createdAt is timestamp && data.keys().size() == 7));
+    }
+
+    // Customer profiles
+    match /customers/{uId} {
+      allow read: if isSignedIn() && request.auth.uid == uId || isAdmin();
+      allow create: if isSignedIn() && request.auth.uid == uId && isValidUser(request.resource.data);
+      allow update: if (isSignedIn() && request.auth.uid == uId && isValidUser(request.resource.data) && 
+                      request.resource.data.createdAt == resource.data.createdAt) ||
+                      (isAdmin() && isValidUser(request.resource.data) && request.resource.data.createdAt == resource.data.createdAt);
+    }
+
+    // Bookings collection
+    match /bookings/{bookingId} {
+      // Allow any cleaner (even logged out) to see requested jobs to show alerts
+      // This is safe because we only expose 'request' status jobs
+      allow read: if resource.data.status == "request" || isOwner(resource.data.customerId) || isActiveCleaner() || isAdmin();
+      allow create: if isOwner(request.resource.data.customerId) && isValidBooking(request.resource.data);
+      allow update: if isAdmin() ? (
+                      request.resource.data.createdAt == resource.data.createdAt &&
+                      (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'cleanerId']))
+                    ) : (
+                      isOwner(resource.data.customerId) ? (
+                        request.resource.data.createdAt == resource.data.createdAt &&
+                        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'notes', 'date', 'time']))
+                      ) : (
+                        isActiveCleaner() &&
+                        resource.data.status == "request" &&
+                        request.resource.data.status == "confirmed" &&
+                        request.resource.data.cleanerId == request.auth.uid &&
+                        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'cleanerId'])
+                      )
+                    );
+      allow delete: if isOwner(resource.data.customerId) && resource.data.status == "request" || isAdmin();
+    }
+
+    // Push Subscriptions for notifications
+    match /push_subscriptions/{subId} {
+      // Allow the server (unauthenticated client) to read subscriptions for broadcasting
+      // In a production app, you would use Admin SDK on the server instead
+      allow read: if true; 
+      allow write: if isOwner(subId);
+    }
+
+    // Cleaner profiles
+    match /cleaners/{uId} {
+      allow read: if isSignedIn() && request.auth.uid == uId || isAdmin();
+      allow create: if isSignedIn() && request.auth.uid == uId && isValidCleaner(request.resource.data);
+      allow update: if (isSignedIn() && request.auth.uid == uId && isValidCleaner(request.resource.data) && 
+                      request.resource.data.createdAt == resource.data.createdAt) ||
+                      (isAdmin() && isValidCleaner(request.resource.data) && request.resource.data.createdAt == resource.data.createdAt);
+    }
+
+    // Admin profiles
+    match /admin/{adminId} {
+      allow read: if isAdmin();
+      allow create: if isSuperAdmin() && isValidAdmin(request.resource.data);
+      allow update: if isSuperAdmin() && isValidAdmin(request.resource.data) && 
+                      request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isSuperAdmin() && request.auth.uid != adminId;
+    }
+
+    // Services collection
+    match /services/{serviceId} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidService(request.resource.data);
+    }
+  }
+}

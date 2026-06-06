@@ -1,0 +1,145 @@
+import React from 'react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+
+export default function PrivacyPolicy() {
+  return (
+    <>
+      <Header />
+      <main className="py-24 px-6 bg-secondary/5 min-h-screen">
+        <div className="max-w-4xl mx-auto bg-white p-8 md:p-16 rounded-[40px] shadow-sm border border-secondary/10">
+          <h1 className="text-4xl md:text-6xl font-serif font-black italic text-primary mb-2 tracking-tight">Privacy Policy</h1>
+          <p className="text-neutral-500 font-medium mb-12 italic">Effective Date: 12 May 2026 | Platform: Haybolbay</p>
+          
+          <div className="space-y-10 text-neutral-700 leading-relaxed font-medium">
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">1. Introduction</h2>
+              <p>
+                Haybolbay is a property and home-service booking platform that connects hosts, landlords, property managers, and service providers such as cleaners and maintenance personnel.
+              </p>
+              <p>
+                This Privacy Policy explains how Haybolbay collects, uses, stores, shares, and protects personal information when users access our website, mobile application, messaging features, booking systems, and related services.
+              </p>
+              <p>
+                By using Haybolbay, you agree to the collection and use of information in accordance with this Privacy Policy. Operated by: Haybolbay Team.
+              </p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">2. Information We Collect</h2>
+              <p>Depending on the type of account and services used, Haybolbay may collect the following information:</p>
+              
+              <div className="space-y-6 ml-4">
+                <div>
+                  <h3 className="font-bold text-primary mb-1 uppercase tracking-wider text-sm">A. Account Registration Information</h3>
+                  <p className="text-sm">When creating an account, users may provide: Full name, Mobile number, Email address, Password (encrypted/authenticated through secure providers), Profile photo, Date of birth (if required), Government-issued identification (where applicable). Role types include: Host / Landlord, Cleaner / Service Provider, Guest / Client.</p>
+                </div>
+                
+                <div>
+                  <h3 className="font-bold text-primary mb-1 uppercase tracking-wider text-sm">B. Verification Information</h3>
+                  <p className="text-sm">For trust, safety, fraud prevention, or payment verification, Haybolbay may request: Valid government ID, Selfie verification, Business registration documents, TESDA certificates or service qualifications, Bank account or e-wallet details (GCash / Maya / PayNow), and Tax-related information where legally required.</p>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-primary mb-1 uppercase tracking-wider text-sm">C. Booking & Service Information</h3>
+                  <p className="text-sm">When using Haybolbay services, we may collect: Property address or unit location, Booking schedules, Service requests, Cleaning or maintenance notes, Check-in/check-out timing, Job completion status, Ratings and reviews, and Messages exchanged through the platform.</p>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-primary mb-1 uppercase tracking-wider text-sm">D. Device & Technical Information</h3>
+                  <p className="text-sm">Haybolbay may automatically collect: IP address, Browser type, Device information, Operating system, App version, Firebase identifiers, Notification tokens, Crash logs and analytics, and Login timestamps. This helps improve security, reliability, and platform performance.</p>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-primary mb-1 uppercase tracking-wider text-sm">E. Location Information</h3>
+                  <p className="text-sm italic">With permission, Haybolbay may collect: GPS location, Real-time cleaner or service-provider location, and Approximate location for booking matching. This is used for dispatching nearby service providers, navigation, ETA calculations, fraud prevention, and operational coordination.</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">3. Messaging & Communications</h2>
+              <p>Haybolbay may provide: In-app messaging, SMS notifications, Push notifications, Email communications, and Booking alerts.</p>
+              <p>Messages may be stored temporarily or archived for: Customer support, Safety investigations, Dispute handling, Fraud prevention, and Operational monitoring. Users should avoid sharing highly sensitive personal information through platform messaging.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">4. How We Use Information</h2>
+              <ul className="list-disc ml-6 space-y-2 text-sm italic">
+                <li>Create and manage accounts</li>
+                <li>Facilitate bookings and payments</li>
+                <li>Match users with service providers</li>
+                <li>Verify identities and qualifications</li>
+                <li>Improve platform reliability</li>
+                <li>Send notifications and reminders</li>
+                <li>Provide customer support</li>
+                <li>Detect fraud or misuse</li>
+                <li>Comply with legal obligations</li>
+                <li>Improve user experience and analytics</li>
+              </ul>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">5. Payment Information</h2>
+              <p>Payments may be processed through third-party providers such as: Stripe, Xendit, GCash, or Maya. Haybolbay does not store full credit card details on its own servers unless explicitly stated. Payment providers may have their own privacy policies.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">6. Firebase & Cloud Infrastructure</h2>
+              <p>Haybolbay currently uses services that may include: Google Firebase, Google Cloud, and Amazon Web Services. Data may be securely stored or processed in cloud infrastructure located in different countries depending on operational requirements.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">7. Data Sharing</h2>
+              <p>Haybolbay may share limited information with: Service providers involved in a booking, Payment processors, Cloud infrastructure providers, Legal authorities where required by law, and Fraud prevention or cybersecurity providers. Haybolbay does not sell personal information to unrelated third parties.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">8. Data Retention</h2>
+              <p>Haybolbay retains information: For as long as accounts remain active, as required for operational, legal, tax, or dispute-resolution purposes, and according to applicable laws and regulations. Inactive or deleted accounts may still retain certain records for fraud prevention, accounting, or legal compliance.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">9. Security Measures</h2>
+              <p>Haybolbay implements reasonable security measures including: Secure authentication, Encrypted communications (HTTPS/TLS), Access controls, Logging and monitoring, Cloud security configurations, and Limited administrative access. However, no platform can guarantee absolute security.</p>
+              <p className="italic">Users are responsible for: Keeping passwords secure, Protecting OTPs and verification codes, and Using trusted devices.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">10. User Rights</h2>
+              <p>Depending on applicable laws, users may request: Access to personal data, Correction of inaccurate information, Deletion of account information, Withdrawal of consent, or Export of certain data. Requests may be subject to operational, legal, or fraud-prevention limitations.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">11. Cookies & Analytics</h2>
+              <p>Haybolbay may use: Cookies, Analytics tools, Firebase Analytics, and Performance monitoring tools. These help understand platform usage and improve services. Users may manage cookies through browser settings.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">12. Children’s Privacy</h2>
+              <p>Haybolbay is not intended for users below the minimum legal age required under applicable local laws unless supervised or permitted by a parent or guardian.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">13. Changes to This Privacy Policy</h2>
+              <p>Haybolbay may update this Privacy Policy periodically. Updated versions will be posted on the platform with a revised effective date. Continued use of Haybolbay after updates constitutes acceptance of the revised Privacy Policy.</p>
+            </section>
+
+            <section className="space-y-4">
+              <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">14. Contact Information</h2>
+              <p>For privacy-related concerns or requests: Haybolbay Team. Email: privacy@haybolbay.com. Website: Haybolbay Official Website.</p>
+            </section>
+
+            <section className="space-y-6 bg-secondary/5 p-8 rounded-3xl mt-12 italic text-primary/80 border border-primary/10">
+              <h2 className="text-xl font-bold uppercase tracking-widest text-primary">15. Important Early-Stage Platform Notice</h2>
+              <p className="text-sm">
+                Haybolbay is currently in MVP / early-stage development. Some features, integrations, workflows, and third-party services may evolve over time as the platform matures operationally and legally. Users acknowledge that certain processes may still be under refinement during this phase.
+              </p>
+            </section>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}

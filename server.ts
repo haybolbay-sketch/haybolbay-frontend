@@ -22,7 +22,7 @@ if (!privateKey) {
   // We can't really function without it, but we won't crash the server
 } else {
   webpush.setVapidDetails(
-    "mailto:contact@haybolbay.com",
+    "mailto:payments@haybolbay.com",
     publicKey,
     privateKey
   );
@@ -30,7 +30,11 @@ if (!privateKey) {
 
 async function startServer() {
   const app = express();
-  const PORT = 3000;
+  const PORT = process.env.PORT || 3000;
+
+// app.listen(PORT, () => {
+//    console.log(`Server running on http://localhost:${PORT}`);
+// });
 
   app.use(express.json());
 

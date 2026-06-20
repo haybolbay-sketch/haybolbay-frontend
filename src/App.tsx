@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import JoinCrew from './pages/JoinCrew';
 import Auth from './pages/Auth';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import SecurityCenter from './pages/SecurityCenter';
 import TermsConditions from './pages/TermsConditions';
 
 import CustomerVerifyEmail from './pages/_customers/VerifyEmail';
@@ -143,6 +144,7 @@ export default function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/security" element={<SecurityCenter />} />
           <Route path="/terms" element={<TermsConditions />} />
           <Route 
             path="/login" 

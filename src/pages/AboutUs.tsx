@@ -12,7 +12,7 @@ export default function AboutUs() {
             About Haybolbay
           </h1>
           <p className="text-neutral-500 font-medium mb-12 italic">
-            Connecting trusted people with trusted home services.
+            Connecting people through trusted home services.
           </p>
 
           <div className="space-y-10 text-neutral-700 leading-relaxed font-medium">
@@ -24,7 +24,7 @@ export default function AboutUs() {
                 Haybolbay was born from a simple observation: finding trusted home services should be as easy as booking a ride, ordering food, or reserving a room online.
               </p>
               <p>
-                Across the Philippines and beyond, many homeowners, tenants, Airbnb hosts, property managers, and small business owners still spend valuable time searching for cleaners, technicians, handymen, movers, and other service providers through referrals, chat groups, and social media posts.
+                Across the Philippines and beyond, many homeowners, tenants, Airbnb hosts, property managers, and small business owners still spend valuable time searching for cleaners and other service providers through referrals, chat groups, and social media posts.
               </p>
               <p>
                 The process is often fragmented, uncertain, and difficult to manage.
@@ -39,7 +39,7 @@ export default function AboutUs() {
                 At the heart of Haybolbay is the story of Juan and Maria.
               </p>
               <p>
-                Juan is a homeowner, tenant, host, or property owner who needs reliable help. Maria is a hardworking service provider, cleaner, technician, or tradesperson looking for honest opportunities to earn a living and serve her community.
+                Juan is a homeowner, tenant, host, or property owner who needs reliable help. Maria is a hardworking service provider, cleaner or tradesperson looking for honest opportunities to earn a living and serve her community.
               </p>
               <p>
                 Both face the same challenge: finding each other at the right time, with trust, transparency, and convenience.
@@ -57,10 +57,10 @@ export default function AboutUs() {
                 Our platform aims to connect customers with trusted service providers through a simple digital experience designed around safety, accountability, and ease of use.
               </p>
               <p>
-                Whether preparing a rental unit for guests, arranging a cleaning service, fixing an air-conditioning unit, or managing a home maintenance task, Haybolbay seeks to make the process smoother for everyone involved.
+                Whether preparing a rental unit for guests, arranging a cleaning service or managing a home maintenance task, Haybolbay seeks to make the process smoother for everyone involved.
               </p>
               <p>
-                We believe technology should empower ordinary people. By helping Juan find dependable services and helping Maria access meaningful work opportunities, we contribute to stronger communities, better livelihoods, and more efficiently managed homes and properties.
+                We believe technology should empower ordinary Filipino people. By helping Juan find dependable services and helping Maria access meaningful work opportunities, we contribute to stronger communities, better livelihoods, and more efficiently managed homes and properties.
               </p>
               <p>
                 Haybolbay is not just about bookings. It is about trust, dignity of work, and helping people help one another—one home service booking at a time.
@@ -131,7 +131,7 @@ export default function AboutUs() {
                 <div>
                   <h3 className="font-bold text-primary mb-1 uppercase tracking-wider text-sm">Respect Our People</h3>
                   <p className="text-sm">
-                    We value hosts, homeowners, tenants, cleaners, coordinators, technicians, and partners. We build a culture of dignity, fairness, and professionalism.
+                    We value hosts, homeowners, tenants, cleaners, coordinators, technicians, and partners. We build a Filipino culture of dignity, fairness, and professionalism.
                   </p>
                 </div>
 

@@ -6,11 +6,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
+import ScrollToTop from './components/ScrollToTop';
 
 import Home from './pages/Home';
 import JoinCrew from './pages/JoinCrew';
 import Auth from './pages/Auth';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import AboutUs from "./pages/AboutUs";
 import SecurityCenter from './pages/SecurityCenter';
 import TermsConditions from './pages/TermsConditions';
 
@@ -128,6 +130,7 @@ export default function App() {
     <AuthProvider>
       <Router>
         <NotificationManager />
+        <ScrollToTop />
         <Routes>
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -144,6 +147,7 @@ export default function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/security" element={<SecurityCenter />} />
           <Route path="/terms" element={<TermsConditions />} />
           <Route 

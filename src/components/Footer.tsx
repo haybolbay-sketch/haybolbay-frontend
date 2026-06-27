@@ -21,7 +21,7 @@ export default function Footer() {
               <span className="hidden text-2xl font-serif font-bold text-white italic">Haybolbay</span>
             </Link>
             <p className="text-sm leading-relaxed text-white/60 italic">
-              Premium home cleaning services for the modern landlord and tenant. Quality guaranteed.
+              Connecting people through trusted home services.
             </p>
           </div>
 
@@ -33,6 +33,7 @@ export default function Footer() {
               <li><a href="#" className="hover:text-accent transition-colors">Reviews</a></li>
               <li><Link to="/join-crew" className="hover:text-accent transition-colors">Join Our Cleaning Crew</Link></li>
               <li><Link to="/admin/login" className="hover:text-accent transition-colors">Admin Portal</Link></li>
+              <li><Link to="/aboutus" className="hover:text-accent transition-colors">About Us</Link></li>
             </ul>
           </div>
 

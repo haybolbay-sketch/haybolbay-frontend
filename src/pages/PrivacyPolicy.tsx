@@ -27,7 +27,7 @@ export default function PrivacyPolicy() {
 
             <section className="space-y-4">
               <h2 className="text-2xl font-serif font-bold text-gray-900 border-b-2 border-primary/10 pb-2 w-fit">2. Information We Collect</h2>
-              <p>Depending on the type of account and services used, Haybolbay may collect the following information:</p>
+              <p>Haybolbay may send emails, SMS messages, or in-app notifications relating to your account, bookings, payments, and security. Haybolbay will never request your password, OTP, GCash PIN, Maya PIN, or banking credentials via email, SMS, phone call, or chat. When in doubt, access your account directly through the Haybolbay application. Depending on the type of account and services used, Haybolbay may collect the following information:</p>
               
               <div className="space-y-6 ml-4">
                 <div>
